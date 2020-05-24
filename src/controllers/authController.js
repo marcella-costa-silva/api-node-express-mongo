@@ -27,7 +27,7 @@ router.post('/register', async (req, res) => {
 
     user.password = undefined // Não retorna a senha quando for cadastrado
 
-    return res.send({ 
+    return res.send({
       user,
       token: generateToken({ id: user.id })
     })
@@ -51,8 +51,8 @@ router.post('/authenticate', async (req, res) => {
 
   user.password = undefined
 
-  res.send({ 
-    user, 
+  res.send({
+    user,
     token: generateToken({ id: user.id })
   })
 })
