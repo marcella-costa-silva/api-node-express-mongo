@@ -1,4 +1,5 @@
 const express = require('express') // Sempre que for mexer com rotas
+const bcrypt = require('bcryptjs')
 
 const User = require('../models/User') // Necessário p/ ações de login e cadastro
 
@@ -21,6 +22,21 @@ router.post('/register', async (req, res) => {
   } catch (error) {
     return res.status(400).send({ error: 'Registration failed' })
   }
+})
+
+// Rota de autenticação
+router.post('/authenticate', async (req, res) => {
+  const { email, password } = req.body
+  const user = await User.findOne({ email }).select('+password') // Busca usuário pelo email, traz a senha
+
+  if (!user)
+    return res.status(400).send({ error: 'User not found' })
+
+  // Compara o password digitado com o password do usuário
+  if (!await bcrypt.compare(password, user.password))
+    return res.status(400).send({ error: 'Invalid password' })
+
+  res.send({ user })
 })
 
 // Todas as rotas definidas serão pré-fixadas com '/auth'
