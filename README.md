@@ -1,2 +1,2 @@
 # api-node-express-mongo
-API NodeJS + Express + Mongo
+API REST com NodeJS + Express + Mongo
