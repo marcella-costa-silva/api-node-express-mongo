@@ -9,5 +9,5 @@ router.get('/', (req, res) => {
   res.send({ ok: true, user: req.userId })
 })
 
-// Todas as rotas definidas serão pré-fixadas com '/projects'
+// Todas as rotas definidas serão pré-fixadas com '/projects'.
 module.exports = app => app.use('/projects', router)

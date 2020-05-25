@@ -1,7 +1,6 @@
 const mongoose = require('../database')
-const bcrypt = require('bcryptjs') // Encriptar a senha
+const bcrypt = require('bcryptjs') // Encriptar a senha.
 
-// Campos dentro do BD
 const UserSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -16,7 +15,7 @@ const UserSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
-    select: false // Não aparecerá no array de usuários
+    select: false // Não aparecerá no array de usuários.
   },
   createdAt: {
     type: Date,
@@ -24,13 +23,13 @@ const UserSchema = new mongoose.Schema({
   }
 })
 
-// Antes de salvar o usuário, a senha será criptogradfada
+// Antes de salvar o usuário, a senha será criptogradfada.
 UserSchema.pre('save', async function (next) {
-  const hash = await bcrypt.hash(this.password, 10) // 10 -> quantas vezes o hash será gerado
-  this.password = hash // this -> usuário que está sendo salvo
+  const hash = await bcrypt.hash(this.password, 10) // 10 -> quantas vezes o hash será gerado.
+  this.password = hash // this -> usuário que está sendo salvo.
   next()
 })
 
-const User = mongoose.model('User', UserSchema) // Nome do model + Schema
+const User = mongoose.model('User', UserSchema) // Nome do model + Schema.
 
 module.exports = User

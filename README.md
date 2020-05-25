@@ -1,15 +1,14 @@
 # api-node-express-mongo
 API REST com NodeJS + Express + Mongo
-
-/src
-  / config
   
-  /controllers
-    projectController.js -> necessita que o usuário esteja autenticado para fazer as requisições.
+/ config
 
-  /database
+/controllers
+  projectController.js -> necessita que o usuário esteja autenticado para fazer as requisições.
 
-  /middleware
-    auth.js -> faz a verificação do token.
+/database
 
-  /models
+/middleware
+  auth.js -> faz a verificação do token.
+
+/models
